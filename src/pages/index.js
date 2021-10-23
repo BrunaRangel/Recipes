@@ -2,6 +2,7 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import { Header } from '../components/Header'
 import { Main } from '../components/Main'
+import { Footer } from '../components/Footer'
 
 
 export const query = graphql`
@@ -42,6 +43,24 @@ export const query = graphql`
             newsletter
             submit
           }
+          footers {
+            imageInstagram {
+              url
+            }
+            imageTwitter {
+              url
+            }
+            imageFacebook {
+              url
+            }
+            imagePinterest {
+              url
+            }
+            recipes
+            subscribe
+            about
+            marketed
+          }
         }
     }
 `
@@ -52,6 +71,7 @@ export default function Index({ data }) {
 
     const dataHeaders = data.alldata.headers[0]
     const dataMains = data.alldata.mains[0]
+    const dataFooters = data.alldata.footers[0]
     
 
     return (
@@ -78,6 +98,16 @@ export default function Index({ data }) {
                subscribe={dataMains.subscribe}
                newsletter={dataMains.newsletter}
                submit={dataMains.submit}
+            />
+            <Footer 
+              imageInstagram={dataFooters.imageInstagram.url}
+              imageTwitter={dataFooters.imageTwitter.url}
+              imageFacebook={dataFooters.imageFacebook.url}
+              imagePinterest={dataFooters.imagePinterest.url}
+              recipes={dataFooters.recipes}
+              subscribe={dataFooters.subscribe}
+              about={dataFooters.about}
+              marketed={dataFooters.marketed}
             />
         </div>
     )
